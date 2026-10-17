@@ -1,0 +1,8 @@
+You use Files.lines to return a stream where each element is a line in the given file.
+This call is surrounded by a try/catch block because the source of the stream is an
+I/O resource. In fact, the call Files.lines will open an I/O resource, which needs to
+be closed to avoid a leak. In the past, you’d need an explicit finally block to do this.
+Conveniently, the Stream interface implements the interface AutoCloseable. This
+means that the management of the resource is handled for you within the try block.
+Once you have a stream of lines, you can then split each line into words by calling the
+split method on line. Notice how you use flatMap to produce one flattened stream

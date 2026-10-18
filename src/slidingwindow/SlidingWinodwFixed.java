@@ -5,6 +5,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class SlidingWinodwFixed {
+	// Input: nums = [1,2,3,4]
+	// Output: [24,12,8,6]
+
+	public static int[] productExceptSelf(int[] nums) {
+		int len = nums.length;
+		int prefix = 1;
+		int[] result = new int[len];
+		for (int i = 0; i < len; i++) {
+			result[i] = prefix;
+			prefix *= nums[i];
+		}
+		int suffix = 1;
+		for (int i = len - 1; i >= 0; i--) {
+			result[i] *= suffix;
+			suffix *= nums[i];
+
+		}
+
+		return result;
+
+	}
 
 	public static int longestContinuousSubstring(String s) {
 		int currentlength = 1;
@@ -280,21 +301,22 @@ public class SlidingWinodwFixed {
 
 	public static void main(String[] args) {
 
-		int[] nums = { 1, 12, -5, -6, 50, 3 };
+		int[] nums = { 1, 2, 3, 4 };
 		int k = 3;
 		int[] nums1 = { 1, 5, 4, 2, 9, 9, 9 };
 
 		// System.out.println(findMaxAverageBrute(nums, k));
 		// System.out.println(findMaxSum(nums, k));
-		String s = "abcdiiidefg";
+		// String s = "abcdiiidefg";
 		// int k = 3;
 		// System.out.println(maxVowels(s, k));
 		// System.out.println(Arrays.toString(longestContinuousSubstringIndex(s)));
 
 		// System.out.println(findMaxProduct(nums, k));
-		reverse(nums);
+		// reverse(nums);
 		// System.out.println(Arrays.toString(nums));
-		System.out.println(maximumSubarraySum(nums1, k));
+		// System.out.println(maximumSubarraySum(nums1, k));
+		System.out.println(Arrays.toString(productExceptSelf(nums)));
 
 	}
 

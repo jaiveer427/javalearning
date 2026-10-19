@@ -1,5 +1,9 @@
 package prefix;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Prefixbasic {
 
 	// Input: strs = ["flower","flow","flight"]
@@ -56,10 +60,85 @@ public class Prefixbasic {
 
 	}
 
+	public static int findTheLongestSubstringBrute(String s) {
+
+		if (s == null || s.isEmpty() || s.isBlank()) {
+			return 0;
+		}
+		int n = s.length();
+		int maxLen = 0;
+		for (int i = 0; i < n; i++) {
+			int a = 0, e = 0, idx = 0, o = 0, u = 0;
+			for (int j = i; j < n; j++) {
+				char ch = s.charAt(j);
+				if (ch == 'a')
+					a++;
+				else if (ch == 'e')
+					e++;
+				else if (ch == 'i')
+					idx++;
+				else if (ch == 'o')
+					o++;
+				else if (ch == 'u')
+					u++;
+
+				if (a % 2 == 0 && e % 2 == 0 && idx % 2 == 0 && o % 2 == 0 && u % 2 == 0) {
+					maxLen = Math.max(maxLen, j - i + 1);
+
+				}
+
+			}
+		}
+
+		return maxLen;
+
+	}
+
+	// eleetminicoworoep //13
+	public static int findTheLongestSubstring(String s) {
+
+		if (s == null || s.isEmpty() || s.isBlank()) {
+			return 0;
+		}
+		int n = s.length();
+		int mask = 0;
+		int maxLen = 0;
+		int[] seen = new int[32];
+		Arrays.fill(seen, -2);
+		seen[0] = -1;
+
+		for (int i = 0; i < n; i++) {
+			int a = 0, e = 0, idx = 0, o = 0, u = 0;
+
+			char ch = s.charAt(i);
+			if (ch == 'a')
+				mask ^= (1 << 0);
+			else if (ch == 'e')
+				e++;
+			else if (ch == 'i')
+				idx++;
+			else if (ch == 'o')
+				o++;
+			else if (ch == 'u')
+				u++;
+			
+			System.out.println(mask);
+
+		}
+	
+
+	return maxLen;
+
+	}
+
 	public static void main(String[] args) {
-		String[] strs = { "flower", "flow", "flight" };
-		System.out.println(longestCommonPrefix(strs));
-		System.out.println(longestCommonPrefixVerticalScanning(strs));
+		// String[] strs = { "flower", "flow", "flight" };
+		// System.out.println(longestCommonPrefix(strs));
+		// System.out.println(longestCommonPrefixVerticalScanning(strs));
+		String s = "eleetminicoworoep";
+
+		System.out.println(findTheLongestSubstringBrute(s));
+		System.out.println(1 << 1);
 
 	}
 

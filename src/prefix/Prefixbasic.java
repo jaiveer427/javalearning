@@ -138,6 +138,7 @@ public class Prefixbasic {
 		String s = "eleetminicoworoep";
 
 		System.out.println(findTheLongestSubstringBrute(s));
+		
 		System.out.println(1 << 1);
 
 	}
